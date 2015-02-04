@@ -4,4 +4,8 @@ class CollectionsController < ApplicationController
     @collections = Collection.all
   end
   
+  def new
+    @collection = Collection.new
+  end
+  
 end

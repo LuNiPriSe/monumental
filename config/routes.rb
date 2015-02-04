@@ -3,6 +3,8 @@ Monumental::Application.routes.draw do
 
   root 'collections#index'
   
+  resources :collections
+  
   
   
   # The priority is based upon order of creation: first created -> highest priority.
