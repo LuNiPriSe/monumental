@@ -21,6 +21,7 @@ class MonumentsController < ApplicationController
   def edit
     if @monument.step != 3
       @monument.step += 1
+      @picture = Picture.new if @monument.step == 2 # in order to create new picture
     end
   end
   
