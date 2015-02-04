@@ -1,5 +1,9 @@
 %h1 Editing monument
 
-= render 'form'
-
+-if @monument.step == 1
+  = render 'form1'
+- elsif @monument.step == 2
+  = render 'form2'
+- elsif @monument.step == 3
+  = render 'overview'
 = link_to 'back', monuments_path

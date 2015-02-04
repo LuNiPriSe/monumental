@@ -1,0 +1,14 @@
+%h2 Step 1:
+= simple_form_for(@monument) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.association :collection, collection: current_user.collections, include_blank: false
+    = f.input :name
+    = f.input :description
+    = f.input :public
+    = f.input :step
+    
+
+  .form-actions
+    = f.button :submit, class: "button radius success", value: "add pictures"

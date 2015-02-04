@@ -2,31 +2,36 @@ class MonumentsController < ApplicationController
   before_filter :find_monument, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @monuments = Monument.all  #TO DO just the ones from the user
+    @monuments = Monument.all.order(created_at: :desc)  #TO DO just the ones from the user
   end
   
   def new
-    @monument = Monument.new
-    @monument.collection_id = params[:collection_id]
+    @monument = Monument.new(step: 1, collection_id: params[:collection_id])
   end
   
   def create
     @monument = Monument.new(monument_params)
     if @monument.save
-      redirect_to monuments_path, notice: 'You created succesfully a monument.'
+      redirect_to edit_monument_path(@monument)
     else
       render action: 'new'
     end
   end
   
   def edit
+    if @monument.step != 3
+      @monument.step += 1
+    end
   end
   
   def update
     if @monument.update(monument_params)
-      redirect_to monuments_path, notice: 'You updated your monument successfully.'
-    else
-      render action: 'edit'
+      if @monument.step != 3
+        @monument.step += 1
+        render action: 'edit'
+      else
+        redirect_to monuments_path, notice: 'You created succesfully a monument.'
+      end
     end
   end
   
@@ -38,7 +43,7 @@ class MonumentsController < ApplicationController
   private
   
   def monument_params
-    params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved)
+    params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved, :step)
   end
   
   def find_monument

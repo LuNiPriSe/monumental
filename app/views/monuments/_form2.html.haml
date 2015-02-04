@@ -1,3 +1,4 @@
+%h2 Step 2:
 = simple_form_for(@monument) do |f|
   = f.error_notification
 
@@ -6,7 +7,8 @@
     = f.input :name
     = f.input :description
     = f.input :public
+    = f.input :step
     
 
   .form-actions
-    = f.button :submit, class: "button radius success"
+    = f.button :submit, class: "button radius success", value: "overview"

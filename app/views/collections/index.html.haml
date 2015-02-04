@@ -14,7 +14,7 @@
       .small-4.columns
         = c.monuments.count
       .small-2.columns
-        = link_to "add monument", add_monument_path(collection_id: c), class: "button mini success radius"
+        = link_to "add monument", add_monument_path(collection_id: c.id), class: "button mini success radius"
       .small-2.columns
         = link_to "edit", edit_collection_path(c), class: "button mini radius"
 
