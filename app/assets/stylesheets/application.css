@@ -13,3 +13,8 @@
 
  *= require_tree .
  */
+
+
+.mini{
+  padding: 5px 7px !important;
+}

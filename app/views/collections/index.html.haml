@@ -1,11 +1,14 @@
+= link_to "create collection", new_collection_path, class: "button radius success"
+
 - unless @collections.empty?
   - @collections.each do |c|
     .row
       .small-6.columns
         = c.name
-      .small-1.columns.end
+      .small-1.columns
         9
+      .small-2.columns
+        = link_to "edit", edit_collection_path(c), class: "button mini radius"
 - else
   Du hast noch keine collection
   
-= link_to "Erstelle Collection", new_collection_path

@@ -12,4 +12,11 @@ RSpec.describe CollectionsController, type: :controller do
   it "shouldn't create a collection without owner"
   
   it "should render the erronious form and display error messages"
+  
+  it "should update a collection"
+    
+  it "shouldn't update a colleciton without name"
+  
+  it "shouldn't update a collection without owner"
+  
 end
