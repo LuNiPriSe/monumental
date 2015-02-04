@@ -1,0 +1,22 @@
+!!! 5
+%html{ :lang => "de"}
+  %head
+    %meta{ :charset => "utf-8" }
+
+    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
+
+    %title= "monumental"
+    
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "vendor/modernizr"
+    = csrf_meta_tag
+
+  %body
+
+    = render "layouts/top_bar" if user_signed_in?
+    .row
+      .small-9.small-centered.columns.top-margin
+        = render 'layouts/messages'
+    = yield
+
+    = javascript_include_tag "application"
