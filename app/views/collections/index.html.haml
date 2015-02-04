@@ -6,7 +6,7 @@
       .small-6.columns
         = c.name
       .small-1.columns
-        9
+        = c.monuments.count
       .small-2.columns
         = link_to "edit", edit_collection_path(c), class: "button mini radius"
 - else
