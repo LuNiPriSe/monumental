@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_filter :find_collection, :only => [:show, :edit]
+  before_filter :find_collection, :only => [:show, :edit, :update, :destroy]
   
   def index
     @collections = current_user.collections
@@ -22,7 +22,6 @@ class CollectionsController < ApplicationController
   end
   
   def update
-    @collection = Collection.find(params[:id])
     if @collection.update(collection_params)
       redirect_to collections_path, notice: 'You updated your collection successfully.'
     else
@@ -31,6 +30,11 @@ class CollectionsController < ApplicationController
   end
   
   def show
+  end
+  
+  def destroy
+    @collection.destroy
+    redirect_to collections_url
   end
   
   private

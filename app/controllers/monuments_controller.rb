@@ -1,7 +1,8 @@
 class MonumentsController < ApplicationController
+  before_filter :find_monument, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @monuments = Monument.all
+    @monuments = Monument.all  #TO DO just the ones from the user
   end
   
   def new
@@ -19,11 +20,9 @@ class MonumentsController < ApplicationController
   end
   
   def edit
-    @monument = Monument.find(params[:id])
   end
   
   def update
-    @monument = Monument.find(params[:id])
     if @monument.update(monument_params)
       redirect_to monuments_path, notice: 'You updated your collection successfully.'
     else
@@ -31,10 +30,19 @@ class MonumentsController < ApplicationController
     end
   end
   
+  def destroy
+    @monument.destroy
+    redirect_to monuments_url
+  end
+  
   private
   
   def monument_params
     params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved)
+  end
+  
+  def find_monument
+    @monument = Monument.find(params[:id])
   end
   
 end

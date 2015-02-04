@@ -19,4 +19,6 @@ RSpec.describe CollectionsController, type: :controller do
   
   it "shouldn't update a collection without owner"
   
+  it "should show new monument form with correct collection"
+  
 end
