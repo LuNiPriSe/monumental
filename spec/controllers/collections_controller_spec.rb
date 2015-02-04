@@ -7,7 +7,7 @@ RSpec.describe CollectionsController, type: :controller do
   
   it "should create a new collection"
     
-  it "shouldn't create a colleciton without name"
+  it "shouldn't create a collection without name"
   
   it "shouldn't create a collection without owner"
   
@@ -15,7 +15,7 @@ RSpec.describe CollectionsController, type: :controller do
   
   it "should update a collection"
     
-  it "shouldn't update a colleciton without name"
+  it "shouldn't update a collection without name"
   
   it "shouldn't update a collection without owner"
   
