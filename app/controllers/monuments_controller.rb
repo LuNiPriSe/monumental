@@ -13,7 +13,7 @@ class MonumentsController < ApplicationController
   def create
     @monument = Monument.new(monument_params)
     if @monument.save
-      redirect_to monuments_path, notice: 'You created succesfully a collection.'
+      redirect_to monuments_path, notice: 'You created succesfully a monument.'
     else
       render action: 'new'
     end
@@ -24,7 +24,7 @@ class MonumentsController < ApplicationController
   
   def update
     if @monument.update(monument_params)
-      redirect_to monuments_path, notice: 'You updated your collection successfully.'
+      redirect_to monuments_path, notice: 'You updated your monument successfully.'
     else
       render action: 'edit'
     end

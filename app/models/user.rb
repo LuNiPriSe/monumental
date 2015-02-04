@@ -4,6 +4,6 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   
-   has_many :collections, :class_name => "Collection", :foreign_key => "user_id"
+   has_many :collections, :class_name => "Collection", :foreign_key => "user_id", dependent: :destroy
    
 end

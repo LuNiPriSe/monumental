@@ -1,6 +1,6 @@
 class Collection < ActiveRecord::Base
   
-  has_many :monuments, :class_name => "Monument", :foreign_key => "collection_id"
+  has_many :monuments, :class_name => "Monument", :foreign_key => "collection_id", dependent: :destroy
   belongs_to :user, :class_name => "User", :foreign_key => "user_id"
   
   validates_presence_of :name, :message => "can't be blank"
