@@ -1,0 +1,9 @@
+%h1 
+  Details of
+  = '"' + @monument.name + '"'
+  
+= link_to "delete monument", @monument, method: :delete, class: "button alert radius"
+  
+.row
+  .large-12.columns
+    = @monument.description
