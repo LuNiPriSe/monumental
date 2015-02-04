@@ -1,0 +1,26 @@
+%h1 
+  Details of
+  = '"' + @collection.name + '"'
+  
+= link_to "add monument", add_monument_path(collection_id: @collection), class: "button success radius"
+  
+
+- unless @collection.monuments.empty?
+  - @collection.monuments.each do |m|
+    .row#header
+      .small-3.columns
+        name
+      .small-4.columns
+        description
+      .small-1.columns
+        public
+      .small-2.columns
+    .row
+      .small-3.columns
+        = m.name
+      .small-4.columns
+        = m.description
+      .small-1.columns
+        = m.public
+      .small-2.columns
+        = link_to "edit", edit_monument_path(m), class: "button mini radius"

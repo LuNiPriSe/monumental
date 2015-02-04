@@ -1,4 +1,5 @@
 class CollectionsController < ApplicationController
+  before_filter :find_collection, :only => [:show, :edit]
   
   def index
     @collections = current_user.collections
@@ -18,7 +19,6 @@ class CollectionsController < ApplicationController
   end
   
   def edit
-    @collection = Collection.find(params[:id])
   end
   
   def update
@@ -30,10 +30,17 @@ class CollectionsController < ApplicationController
     end
   end
   
+  def show
+  end
+  
   private
   
   def collection_params
     params.require(:collection).permit(:name, :user_id)
+  end
+  
+  def find_collection
+    @collection = Collection.find(params[:id])
   end
   
 end

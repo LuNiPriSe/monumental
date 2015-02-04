@@ -6,6 +6,7 @@ class MonumentsController < ApplicationController
   
   def new
     @monument = Monument.new
+    @monument.collection_id = params[:collection_id]
   end
   
   def create

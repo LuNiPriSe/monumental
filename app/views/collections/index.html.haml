@@ -4,7 +4,7 @@
   - @collections.each do |c|
     .row
       .small-6.columns
-        = c.name
+        = link_to c.name, c
       .small-1.columns
         = c.monuments.count
       .small-2.columns
