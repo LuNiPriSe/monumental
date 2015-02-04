@@ -3,6 +3,7 @@
   = '"' + @collection.name + '"'
   
 = link_to "add monument", add_monument_path(collection_id: @collection), class: "button success radius"
+= link_to "delete collection", @collection, method: :delete, class: "button alert radius"
   
 
 - unless @collection.monuments.empty?
@@ -17,6 +18,7 @@
       .small-2.columns
     .row
       .small-3.columns
+        = # link_to m.name, monument_path(m)
         = m.name
       .small-4.columns
         = m.description
