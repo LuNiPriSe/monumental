@@ -1,17 +1,17 @@
 = link_to "create monument", new_monument_path, class: "button radius success"
 
 - unless @monuments.empty?
+  .row#header
+    .small-3.columns
+      collection
+    .small-3.columns
+      name
+    .small-3.columns
+      description
+    .small-1.columns
+      public
+    .small-2.columns
   - @monuments.each do |m|
-    .row#header
-      .small-3.columns
-        collection
-      .small-3.columns
-        name
-      .small-3.columns
-        description
-      .small-1.columns
-        public
-      .small-2.columns
     .row
       .small-3.columns
         = link_to m.collection.name, collection_path(m.collection) 

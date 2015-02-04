@@ -1,14 +1,24 @@
 = link_to "create collection", new_collection_path, class: "button radius success"
 
 - unless @collections.empty?
+  .row#header
+    .small-4.columns
+      name
+    .small-4.columns
+      number of monuments
+    .small-2.columns
   - @collections.each do |c|
     .row
-      .small-6.columns
+      .small-4.columns
         = link_to c.name, c
-      .small-1.columns
+      .small-4.columns
         = c.monuments.count
       .small-2.columns
+        = link_to "add monument", add_monument_path(collection_id: c), class: "button mini success radius"
+      .small-2.columns
         = link_to "edit", edit_collection_path(c), class: "button mini radius"
+
+      
 - else
   Du hast noch keine collection
   
