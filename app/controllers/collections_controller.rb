@@ -10,8 +10,11 @@ class CollectionsController < ApplicationController
   
   def create
     @collection = Collection.new(colleciton_params)
-    @collection.save
-    redirect_to collections_path
+    if @collection.save
+      redirect_to collections_path, notice: 'you created succesfully a collection'
+    else
+      render action: 'new'
+    end
   end
   
   private
