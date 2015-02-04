@@ -6,6 +6,7 @@ gem "rspec-rails"
 gem "haml-rails"
 gem 'devise'
 gem 'foundation-rails'
+gem 'simple_form'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
