@@ -1,0 +1,11 @@
+- unless @collections.empty?
+  - @collections.each do |c|
+    .row
+      .small-6.columns
+        = c.name
+      .small-1.columns.end
+        9
+- else
+  Du hast noch keine collection
+  
+= link_to "Erstelle Collection"
