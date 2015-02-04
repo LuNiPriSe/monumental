@@ -4,6 +4,7 @@ Monumental::Application.routes.draw do
   root 'collections#index'
   
   resources :collections
+  resources :monuments
   
   
   

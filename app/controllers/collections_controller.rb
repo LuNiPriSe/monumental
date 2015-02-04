@@ -9,7 +9,7 @@ class CollectionsController < ApplicationController
   end
   
   def create
-    @collection = Collection.new(colleciton_params)
+    @collection = Collection.new(collection_params)
     if @collection.save
       redirect_to collections_path, notice: 'You created succesfully a collection.'
     else
@@ -23,7 +23,7 @@ class CollectionsController < ApplicationController
   
   def update
     @collection = Collection.find(params[:id])
-    if @collection.update(colleciton_params)
+    if @collection.update(collection_params)
       redirect_to collections_path, notice: 'You updated your collection successfully.'
     else
       render action: 'edit'
@@ -32,7 +32,7 @@ class CollectionsController < ApplicationController
   
   private
   
-  def colleciton_params
+  def collection_params
     params.require(:collection).permit(:name, :user_id)
   end
   

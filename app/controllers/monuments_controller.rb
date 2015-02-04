@@ -1,30 +1,30 @@
 class MonumentsController < ApplicationController
   
   def index
-    @collections = current_user.collections
+    @monuments = Monument.all
   end
   
   def new
-    @collection = Collection.new(user_id: current_user.id)   # seems safer to add here than in view
+    @monument = Monument.new
   end
   
   def create
-    @collection = Collection.new(colleciton_params)
-    if @collection.save
-      redirect_to collections_path, notice: 'You created succesfully a collection.'
+    @monument = Monument.new(monument_params)
+    if @monument.save
+      redirect_to monuments_path, notice: 'You created succesfully a collection.'
     else
       render action: 'new'
     end
   end
   
   def edit
-    @collection = Collection.find(params[:id])
+    @monument = Monument.find(params[:id])
   end
   
   def update
-    @collection = Collection.find(params[:id])
-    if @collection.update(colleciton_params)
-      redirect_to collections_path, notice: 'You updated your collection successfully.'
+    @monument = Monument.find(params[:id])
+    if @monument.update(monument_params)
+      redirect_to monuments_path, notice: 'You updated your collection successfully.'
     else
       render action: 'edit'
     end
@@ -32,8 +32,8 @@ class MonumentsController < ApplicationController
   
   private
   
-  def colleciton_params
-    params.require(:collection).permit(:name, :user_id)
+  def monument_params
+    params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved)
   end
   
 end
