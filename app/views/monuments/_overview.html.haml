@@ -1,7 +1,35 @@
-%h1 
-  Overview of
+%h2 
+  Step 3: Overview of
   = '"' + @monument.name + '"'
   
 .row
   .large-12.columns
     = @monument.description
+.row#header
+  .small-3.columns
+    thumb
+  .small-2.columns
+    name
+  .small-2.columns
+    date
+  .small-4.columns
+    description
+  .small-1.columns
+
+- @monument.pictures.each do |p|
+  .row
+    .small-3.columns
+      = image_tag p.file.url(:thumb)
+    .small-2.columns
+      = p.name
+    .small-2.columns
+      = p.date
+    .small-4.columns
+      = p.description
+    .small-1.columns
+      = link_to "edit"
+      = link_to "delete"
+      
+= link_to "edit details", edit_monument_path(@monument, jump_step: 1)
+= link_to "add more pictures", edit_monument_path(@monument, jump_step: 2)
+    

@@ -18,17 +18,26 @@ class MonumentsController < ApplicationController
     end
   end
   
+  # step 0 -> 1 => shows monument-details forms
+  # step 1 -> 2 => shows add_picture forms
+  # step 2 -> 3 => shows monument overview
   def edit
-    if @monument.step != 3
-      @monument.step += 1
-      @picture = Picture.new if @monument.step == 2 # in order to create new picture
+    if params[:jump_step]  # for back to specific step at overview TO DO: find better solution
+      @monument.step = params[:jump_step].to_i - 1
+    end
+    if @monument.step != 3  # if monument is in creation process
+      @monument.step += 1   # in DB is the actual step, here we need the step rails is supposed to render
+      @picture = Picture.new(monument_id: @monument.id) if @monument.step == 2 # in order to create new picture
+    else # if monument was finished start again
+      @monument.step = 0
     end
   end
   
   def update
     if @monument.update(monument_params)
       if @monument.step != 3
-        @monument.step += 1
+        @monument.step += 1   # in DB is the actual step, here we need the step rails is supposed to render
+        @picture = Picture.new(monument_id: @monument.id) if @monument.step == 2 # in order to create new picture
         render action: 'edit'
       else
         redirect_to monuments_path, notice: 'You created succesfully a monument.'

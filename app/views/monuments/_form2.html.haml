@@ -4,10 +4,12 @@
 
   .form-inputs
     = f.input :file
+    = f.input :name
     = f.input :description
     = f.input :date
-    = f.input :step
+    = f.input :monument_id, as: :hidden
     
 
   .form-actions
-    = f.button :submit, class: "button radius success", value: "overview"
+    = f.button :submit, class: "button radius success", value: "add another picture"
+    = f.button :submit, class: "button radius success", value: "save picture & continue"

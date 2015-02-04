@@ -4,6 +4,27 @@
   
 = link_to "delete monument", @monument, method: :delete, class: "button alert radius"
   
+  
 .row
   .large-12.columns
     = @monument.description
+.row#header
+  .small-4.columns
+    thumb
+  .small-2.columns
+    name
+  .small-2.columns
+    date
+  .small-4.columns
+    description
+- @monument.pictures.each do |p|
+  .row
+    .small-4.columns
+      = image_tag p.file.url(:thumb)
+    .small-2.columns
+      = p.name
+    .small-2.columns
+      = p.date
+    .small-4.columns
+      = p.description
+    
