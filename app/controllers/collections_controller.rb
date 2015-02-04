@@ -1,11 +1,11 @@
 class CollectionsController < ApplicationController
   
   def index
-    @collections = Collection.all
+    @collections = current_user.collections
   end
   
   def new
-    @collection = Collection.new
+    @collection = Collection.new(user_id: current_user.id)   # seems safer to add here than in view
   end
   
   def create
