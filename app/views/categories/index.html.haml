@@ -4,12 +4,17 @@
   .row#header
     .small-4.columns
       name
+    .small-4.columns
+      number of monuments
     .small-2.columns.end
   - @categories.each do |c|
     .row
       .small-4.columns
         = c.name
+      .small-4.columns
+        = c.monuments.count
       .small-2.columns.end
+        = link_to "edit", edit_category_path(c), class: "button mini radius"
         = link_to "delete", c, method: :delete, class: "button alert radius mini"
 
 

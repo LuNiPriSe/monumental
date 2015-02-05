@@ -101,7 +101,7 @@ class MonumentsController < ApplicationController
   end
 
   def monument_params
-    params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved, :step)
+    params.require(:monument).permit(:collection_id, :name, :description, :public, :public_approved, :step, {:category_ids => []})
   end
   
   def picture_params

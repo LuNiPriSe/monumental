@@ -1,3 +1,10 @@
+.row
+  .large-8.columns
+    %h4= @monument.description
+  .large-4.columns
+    - @monument.categories.each do |c|
+      = c.name
+      %br
 .row#header
   .small-3.columns
     thumb

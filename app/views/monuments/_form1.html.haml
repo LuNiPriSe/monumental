@@ -7,7 +7,8 @@
     = f.input :name
     = f.input :description
     = f.input :public
-    = f.input :step
+    = f.input :step, as: :hidden
+    = f.association :categories, as: :check_boxes
     
 
   .form-actions

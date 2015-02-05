@@ -8,9 +8,5 @@
       = link_to "edit", edit_step_monument_path(@monument, 1), class: "button small radius mini"
       = link_to "delete monument", @monument, method: :delete, class: "button alert radius small mini"
   
-.row
-  .large-12.columns
-    %h4= @monument.description
-  
-= render "pictures_list"
+= render "monument_details"
     
