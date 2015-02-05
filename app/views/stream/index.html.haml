@@ -1,4 +1,13 @@
 - unless @monuments.empty?
+  .row
+    .large-12.columns
+      = form_tag monuments_stream_path, :method => 'get' do
+        .row
+          .small-6.columns
+            = text_field_tag :search, params[:search]
+          .small-3.columns.end
+            = submit_tag "search stream", :name => nil, class: "button radius"
+            
   - @monuments.each do |m|
     - if m.pictures.count > 0 # only show with pictures
       .row.monument_box
