@@ -9,4 +9,5 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Monumental::Application.config.secret_key_base = '697e60766465e85a32435ec9e476e83d8e56a37518cdb6dd9df8a89bbc96fcb5abc81f0ec2224f388320fa079fd1f897e3c1dee0f87d37e209a157f597067038'
+secret = Rails.env.production? ? ENV['SECRET_TOKEN'] : "697e60766465e85a32435ec9e476e83d8e56a37518cdb6dd9df8a89bbc96fcb5abc81f0ec2224f388320fa079fd1f897e3c1dee0f87d37e209a157f597067038"
+Monumental::Application.config.secret_key_base = secret
