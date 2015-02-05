@@ -14,5 +14,5 @@
   .form-actions
     = f.button :submit, class: "button radius success", value: "add another picture"
     = f.button :submit, class: "button radius success", value: "add picture & continue"
-    = link_to "continue", next_step_monument_path(id: @monument.id, step: 3), class: "button radius success" if @monument.pictures.count > 0
+    = link_to "continue", new_step_monument_path(id: @monument.id, step: 3), class: "button radius success" if @monument.pictures.count > 0
 
