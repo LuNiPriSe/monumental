@@ -2,7 +2,7 @@ class MonumentsController < ApplicationController
   before_filter :find_monument, :only => [:show, :update, :destroy, :finish]
   
   def index
-    @monuments = Monument.all.order(created_at: :desc)  #TO DO just the ones from the user
+    @monuments = current_user.monuments.order(created_at: :desc)  #TO DO just the ones from the user
   end
   
   def new

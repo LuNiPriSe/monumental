@@ -2,7 +2,7 @@ class CollectionsController < ApplicationController
   before_filter :find_collection, :only => [:show, :edit, :update, :destroy]
   
   def index
-    @collections = current_user.collections
+    @collections = current_user.collections.order(created_at: :desc)
   end
   
   def new
