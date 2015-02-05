@@ -1,5 +1,5 @@
 class MonumentsController < ApplicationController
-  before_filter :find_monument, :only => [:show, :update, :destroy]
+  before_filter :find_monument, :only => [:show, :update, :destroy, :finish]
   
   def index
     @monuments = Monument.all.order(created_at: :desc)  #TO DO just the ones from the user
@@ -21,23 +21,16 @@ class MonumentsController < ApplicationController
       render action: 'new'
     end
   end
-  
-  # step 0 -> 1 => shows monument-details forms
-  # step 1 -> 2 => shows add_picture forms
-  # step 2 -> 3 => shows monument overview
+
   def edit
     prepare_step
   end
   
   def update
     if @monument.update(monument_params)
-      if @monument.step != 3
-        @monument.step += 1   # in DB is the actual step, here we need the step rails is supposed to render
-        @picture = Picture.new(monument_id: @monument.id) if @monument.step == 2 # in order to create new picture
-        render action: 'edit'
-      else
-        redirect_to monuments_path, notice: 'You created succesfully a monument.'
-      end
+      redirect_to edit_step_monument_path(id: @monument.id, step: @monument.step + 1)
+    else
+      render action: 'edit'
     end
   end
   
@@ -53,11 +46,30 @@ class MonumentsController < ApplicationController
       if params[:commit] == "add picture & continue"  #  if no more pictures should be added TO DO: find better solution
       step = 3 # to finish monument creation
       end
-    redirect_to new_step_monument_path(id: @picture.monument_id, step: step), notice: 'You succesfully uploaded a picture.'  
-    else # some validation is missing
+    if params[:last_action] == "new"
+      redirect_to new_step_monument_path(id: @picture.monument_id, step: step), notice: 'You succesfully uploaded a picture.'  
+    else
+      redirect_to edit_step_monument_path(id: @picture.monument_id, step: step), notice: 'You succesfully uploaded a picture.'
+    end
+    else # some validation is failing => can't redirect or loose messages
       @monument = Monument.find(@picture.monument_id)
-      @monument.step = 2 # for rendering
-      render 'monuments/edit'
+      if params[:last_action] == "new"
+        @monument.step = 2 # for rendering
+        url = 'monuments/new'
+      else
+        params[:step] = '2' # for rendering 
+        url = 'monuments/edit'
+      end
+      @last_action = params[:last_action]
+      render url
+    end
+  end
+  
+  def finish
+    if @monument.update(step: 3)
+      redirect_to @monument, notice: 'Your monument has sucesfully been created.'
+    else
+      render action: 'edit'
     end
   end
   
@@ -65,6 +77,7 @@ class MonumentsController < ApplicationController
 
   def prepare_step
     find_monument
+    @last_action = action_name # save action for form2
     @monument.step = params[:step]
     @picture = Picture.new(monument_id: @monument.id) if @monument.step == 2 # in order to create new picture
   end

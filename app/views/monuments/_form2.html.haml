@@ -9,10 +9,13 @@
     = f.input :description
     = f.input :date
     = f.input :monument_id, as: :hidden
+    = hidden_field_tag :last_action, @last_action
     
 
   .form-actions
     = f.button :submit, class: "button radius success", value: "add another picture"
     = f.button :submit, class: "button radius success", value: "add picture & continue"
-    = link_to "continue", new_step_monument_path(id: @monument.id, step: 3), class: "button radius success" if @monument.pictures.count > 0
-
+    - if @monument.pictures.count > 0 and @last_action == "new"
+      = link_to "continue", new_step_monument_path(id: @monument.id, step: 3), class: "button radius success" 
+    -elsif @monument.pictures.count > 0 and @last_action == "edit"
+      = link_to "continue", edit_step_monument_path(id: @monument.id, step: 3), class: "button radius success" 

@@ -1,4 +1,4 @@
-%h1 New collection
+%h1 New monument
 
 - if @monument.step == 1
   = render 'monuments/form1'
@@ -7,6 +7,11 @@
 - elsif @monument.step == 3
   = render 'monuments/overview'
 
+- if @monument.step == 3
+  = link_to "create monument", finish_monument_path(id: @monument.id), method: :post, class: "button radius success" 
+  = link_to "edit details", new_step_monument_path(@monument, step: 1), class: "button radius" 
+  = link_to "add more pictures", new_step_monument_path(@monument, step: 2), class: "button radius" 
+%br
 - if @monument.id 
   = link_to "cancel", @monument, method: :delete, class: "button alert radius"
 - else

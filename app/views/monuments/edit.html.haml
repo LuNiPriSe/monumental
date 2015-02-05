@@ -1,10 +1,16 @@
 %h1 Editing monument
 
--if @monument.step == 1
+-if params[:step] == '1'
   = render 'monuments/form1'
-- elsif @monument.step == 2
+- elsif params[:step] == '2'
   = render 'monuments/form2'
-- elsif @monument.step == 3
+- elsif params[:step] == '3'
   = render 'monuments/overview'
   
+- if @monument.step == 3
+  = link_to "save monument", finish_monument_path(id: @monument.id), method: :post, class: "button radius success" 
+  = link_to "edit details", edit_step_monument_path(id: @monument.id, step: 1), class: "button radius" 
+  = link_to "add more pictures", edit_step_monument_path(id: @monument.id, step: 2), class: "button radius" 
+%br
+    
 = link_to "end edit", @monument, class: "button alert radius"
