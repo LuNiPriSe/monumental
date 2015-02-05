@@ -15,7 +15,7 @@
         = c.monuments.count
       .small-2.columns.end
         = link_to "edit", edit_category_path(c), class: "button mini radius"
-        = link_to "delete", c, method: :delete, class: "button alert radius mini"
+        = link_to "delete", c, method: :delete, class: "button alert radius mini" if current_user.admin == true
 
 
       
