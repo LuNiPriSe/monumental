@@ -7,21 +7,4 @@
   
 
 - unless @collection.monuments.empty?
-  .row#header
-    .small-3.columns
-      name
-    .small-4.columns
-      description
-    .small-1.columns
-      public
-    .small-2.columns
-  - @collection.monuments.each do |m|
-    .row
-      .small-3.columns
-        = link_to m.name, monument_path(m)
-      .small-4.columns
-        = m.description
-      .small-1.columns
-        = m.public
-      .small-2.columns
-        = link_to "edit", edit_monument_path(m), class: "button mini radius"
+  = render "monuments/monument_list", monuments: @collection.monuments
