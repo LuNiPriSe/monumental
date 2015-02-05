@@ -1,5 +1,3 @@
-= link_to "create monument", new_monument_path, class: "button radius success"
-
 - unless @monuments.empty?
   .row#header
     .small-2.columns
@@ -29,5 +27,5 @@
         = link_to "edit", edit_step_monument_path(m, 1), class: "button mini radius"
 
 - else
-  You have no monuments
+  No public monuments
   
