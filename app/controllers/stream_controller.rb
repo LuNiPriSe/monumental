@@ -1,11 +1,19 @@
 class StreamController < ApplicationController
   
   def index
-    @monuments = Monument.where(public: true, public_aproved: true).order(created_at: :asc)
+    if params[:search] 
+      @monuments = Monument.public.search(params[:search])
+    else
+      @monuments = Monument.public
+    end
   end
   
-  def orbit
-    @monuments = Monument.where(public: true, public_aproved: true).order(created_at: :asc)
+  def orbit    
+    if params[:search] 
+      @monuments = Monument.public.search(params[:search])
+    else
+      @monuments = Monument.public
+    end
   end
   
   def aprove

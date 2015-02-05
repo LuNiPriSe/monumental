@@ -16,8 +16,8 @@ Monumental::Application.routes.draw do
   post 'monuments/change_public_state/:id' => "monuments#change_public_state", as: "change_public_state"
   post 'monuments/change_approval_state/:id' => "monuments#change_aproval_state", as: "change_aproval_state"  # typo in model etc. :-(
   
-  get 'stream' => "stream#index", as: "monuments_stream"
-  get 'coverflow' => "stream#orbit", as: "monuments_orbit"
+  get 'stream(/:search)' => "stream#index", as: "monuments_stream"
+  get 'coverflow(/:search)' => "stream#orbit", as: "monuments_orbit"
   get 'stream/approve' => "stream#aprove", as: "monuments_aprove_stream"
   
   

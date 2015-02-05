@@ -9,4 +9,7 @@ class Monument < ActiveRecord::Base
   validates_presence_of :collection_id, :message => "has to belong to a collection"
 
   accepts_nested_attributes_for :categories
-end
+
+  scope :public, -> {where(public: true, public_aproved: true).order(created_at: :asc)}
+  scope :search, -> (query){where("name LIKE ?", "%#{query}%")}
+  end
