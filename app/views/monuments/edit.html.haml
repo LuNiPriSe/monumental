@@ -6,4 +6,5 @@
   = render 'monuments/form2'
 - elsif @monument.step == 3
   = render 'monuments/overview'
-= link_to 'back', monuments_path
+  
+= link_to "cancel", @monument, method: :delete, class: "button alert radius"

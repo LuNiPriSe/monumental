@@ -18,7 +18,7 @@
 
 - @monument.pictures.each do |p|
   .row
-    .small-3.columns
+    .small-2.columns
       = image_tag p.file.url(:thumb)
     .small-2.columns
       = p.name
@@ -26,10 +26,21 @@
       = p.date
     .small-4.columns
       = p.description
-    .small-1.columns
-      = link_to "edit"
-      = link_to "delete"
-      
-= link_to "edit details", edit_monument_path(@monument, jump_step: 1)
-= link_to "add more pictures", edit_monument_path(@monument, jump_step: 2)
+    .small-2.columns
+      = link_to "edit", edit_picture_path(p), class: "button radius mini"
+      = link_to "delete", p, method: :delete, class: "button radius mini alert"
+
+%br
+= simple_form_for(@monument) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :step
+  .form-actions
+    = f.button :submit, class: "button radius success", value: "create monument"
+
+%br
+= link_to "edit details", edit_monument_path(@monument, jump_step: 1), class: "button radius"
+= link_to "add more pictures", edit_monument_path(@monument, jump_step: 2), class: "button radius"
+%br
     
