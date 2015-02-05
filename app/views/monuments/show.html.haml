@@ -10,7 +10,7 @@
   .large-12.columns
     = @monument.description
 .row#header
-  .small-4.columns
+  .small-2.columns
     thumb
   .small-2.columns
     name
@@ -18,9 +18,11 @@
     date
   .small-4.columns
     description
+  .small-2.columns
+    
 - @monument.pictures.each do |p|
   .row
-    .small-4.columns
+    .small-2.columns
       = image_tag p.file.url(:thumb)
     .small-2.columns
       = p.name
@@ -28,4 +30,7 @@
       = p.date
     .small-4.columns
       = p.description
+    .small-2.columns
+      = link_to "edit", edit_picture_path(p), class: "button radius mini"
+      = link_to "delete", p, method: :delete, class: "button alert radius mini"
     

@@ -1,0 +1,13 @@
+= simple_form_for(@picture) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = image_tag @picture.file.url(:medium)
+    = f.input :name
+    = f.input :description
+    = f.input :date
+    = f.input :monument_id, as: :hidden
+    = hidden_field_tag :last_action, @last_action
+
+  .form-actions
+    = f.button :submit, class: "button radius success"
