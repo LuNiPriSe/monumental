@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204183425) do
+ActiveRecord::Schema.define(version: 20150205130453) do
 
   create_table "collections", force: true do |t|
     t.string   "name"
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20150204183425) do
   create_table "monuments", force: true do |t|
     t.string   "name"
     t.text     "description"
-    t.boolean  "public"
-    t.boolean  "public_aproved"
+    t.boolean  "public",         default: false
+    t.boolean  "public_aproved", default: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "collection_id"

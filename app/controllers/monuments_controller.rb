@@ -1,5 +1,5 @@
 class MonumentsController < ApplicationController
-  before_filter :find_monument, :only => [:show, :update, :destroy, :finish, :change_public_state]
+  before_filter :find_monument, :only => [:show, :update, :destroy, :finish, :change_public_state, :change_aproval_state]
   
   def index
     @monuments = current_user.monuments.order(created_at: :desc)  #TO DO just the ones from the user
@@ -78,6 +78,15 @@ class MonumentsController < ApplicationController
       @monument.update(public: false)
     else
       @monument.update(public: true)
+    end
+    redirect_to :back
+  end
+  
+  def change_aproval_state
+    if @monument.public_aproved == true
+      @monument.update(public_aproved: false)
+    else
+      @monument.update(public_aproved: true)
     end
     redirect_to :back
   end
