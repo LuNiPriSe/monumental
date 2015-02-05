@@ -5,6 +5,7 @@ Monumental::Application.routes.draw do
   
   resources :collections
   resources :monuments
+  resources :categories
   resources :pictures
   get 'monuments/new(/:collection_id)' => "monuments#new", as: "add_monument"
   get 'monuments/new/:id/step/:step' => "monuments#new", as: "new_step_monument"

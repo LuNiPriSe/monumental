@@ -1,0 +1,19 @@
+= link_to "create category", new_category_path, class: "button radius success"
+
+- unless @categories.empty?
+  .row#header
+    .small-4.columns
+      name
+    .small-2.columns.end
+  - @categories.each do |c|
+    .row
+      .small-4.columns
+        = c.name
+      .small-2.columns.end
+        = link_to "delete", c, method: :delete, class: "button alert radius mini"
+
+
+      
+- else
+  You have no category
+  
