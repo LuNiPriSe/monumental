@@ -8,7 +8,7 @@ class StreamController < ApplicationController
     if current_user.admin == true
       @monuments = Monument.where(public: true).order(public_aproved: :asc, created_at: :asc)
     else
-      redirect_to streams_path
+      redirect_to monuments_stream_path
     end
   end
   
