@@ -3,7 +3,7 @@ class PicturesController < ApplicationController
   def create
     @picture = Picture.new(picture_params)
     if @picture.save
-      if params[:commit] == "save picture & continue"  #  if no more pictures should be added TO DO: find better solution
+      if params[:commit] == "save picture & save monument"  #  if no more pictures should be added TO DO: find better solution
         @monument = Monument.find(@picture.monument_id)
         @monument.update(step: 2)  # jump to the next step
       end

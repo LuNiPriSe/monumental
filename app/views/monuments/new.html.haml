@@ -1,5 +1,13 @@
 %h1 New collection
 
-= render 'form1'
+- if @monument.step == 1
+  = render 'monuments/form1'
+- elsif @monument.step == 2
+  = render 'monuments/form2'
+- elsif @monument.step == 3
+  = render 'monuments/overview'
 
-= link_to 'back', monuments_path
+- if @monument.id 
+  = link_to "cancel", @monument, method: :delete, class: "button alert radius"
+- else
+  = link_to "cancel", monuments_path, class: "button alert radius"

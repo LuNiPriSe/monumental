@@ -39,8 +39,7 @@
   .form-actions
     = f.button :submit, class: "button radius success", value: "create monument"
 
-%br
-= link_to "edit details", edit_monument_path(@monument, jump_step: 1), class: "button radius"
-= link_to "add more pictures", edit_monument_path(@monument, jump_step: 2), class: "button radius"
+= link_to "edit details", next_step_monument_path(@monument, step: 1), class: "button radius"
+= link_to "add more pictures", next_step_monument_path(@monument, step: 2), class: "button radius"
 %br
     
