@@ -5,5 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   
    has_many :collections, :class_name => "Collection", :foreign_key => "user_id", dependent: :destroy
+
+   has_many :monuments, :through => :collections, :source => :monuments
+   has_many :pictures, :through => :monuments, :source => :pictures
    
 end

@@ -1,5 +1,6 @@
 class Monument < ActiveRecord::Base
   belongs_to :collection, :class_name => "Collection", :foreign_key => "collection_id"
+  has_one :user, :class_name => "User", through: :collection  # for the join
   has_many :pictures, :class_name => "Picture", :foreign_key => "monument_id", dependent: :destroy
   
   validates_presence_of :name, :message => "can't be blank"
