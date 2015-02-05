@@ -18,7 +18,7 @@ Monumental::Application.routes.draw do
   
   get 'stream(/:search)' => "stream#index", as: "monuments_stream"
   get 'coverflow(/:search)' => "stream#orbit", as: "monuments_orbit"
-  get 'stream/approve' => "stream#aprove", as: "monuments_aprove_stream"
+  get 'approve' => "stream#aprove", as: "monuments_aprove_stream"
   
   
   
