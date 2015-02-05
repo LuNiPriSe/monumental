@@ -1,0 +1,33 @@
+- unless @monuments.empty?
+  .row#header
+    .small-2.columns
+      collection
+    .small-2.columns
+      name
+    .small-3.columns
+      description
+    .small-2.columns
+      pictures
+    .small-1.columns
+      public
+    .small-2.columns
+      approved
+  - @monuments.each do |m|
+    .row
+      .small-2.columns
+        = link_to m.collection.name, collection_path(m.collection) 
+      .small-2.columns
+        = link_to m.name, m
+      .small-3.columns
+        = m.description
+      .small-2.columns
+        = m.pictures.count
+      .small-1.columns
+        = m.public
+      .small-2.columns
+        = link_to m.public_aproved.to_s, change_aproval_state_path(m), method: :post, class: "button mini radius"
+        
+
+- else
+  No public monuments
+  

@@ -17,6 +17,7 @@ Monumental::Application.routes.draw do
   post 'monuments/change_approval_state/:id' => "monuments#change_aproval_state", as: "change_aproval_state"  # typo in model etc. :-(
   
   get 'stream' => "stream#index", as: "monuments_stream"
+  get 'stream/approve' => "stream#aprove", as: "monuments_aprove_stream"
   
   
   
