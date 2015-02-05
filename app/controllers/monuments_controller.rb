@@ -1,5 +1,5 @@
 class MonumentsController < ApplicationController
-  before_filter :find_monument, :only => [:show, :update, :destroy, :finish]
+  before_filter :find_monument, :only => [:show, :update, :destroy, :finish, :change_public_state]
   
   def index
     @monuments = current_user.monuments.order(created_at: :desc)  #TO DO just the ones from the user
@@ -71,6 +71,15 @@ class MonumentsController < ApplicationController
     else
       render action: 'edit'
     end
+  end
+  
+  def change_public_state
+    if @monument.public == true
+      @monument.update(public: false)
+    else
+      @monument.update(public: true)
+    end
+    redirect_to :back
   end
   
   private

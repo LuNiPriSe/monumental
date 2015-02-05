@@ -12,6 +12,8 @@ Monumental::Application.routes.draw do
   post 'monuments/finish/:id' => "monuments#finish", as: "finish_monument"
   post 'monuments/add_picture/:id' => "monuments#add_picture", as: "add_picture"
   
+  post 'monuments/change_public_state/:id' => "monuments#change_public_state", as: "change_public_state"
+  
   get 'stream' => "stream#index", as: "monuments_stream"
   
   

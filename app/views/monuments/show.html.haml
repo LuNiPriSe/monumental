@@ -1,8 +1,10 @@
 .row
   .large-12.columns
     %h1 
-      Details of
+      = link_to @monument.collection.name, collection_path(@monument.collection)
+      > Details of
       = '"' + @monument.name + '"'
+      = link_to @monument.public.to_s, change_public_state_path(@monument), method: :post, class: "button mini radius"
       = link_to "edit", edit_step_monument_path(@monument, 1), class: "button small radius mini"
       = link_to "delete monument", @monument, method: :delete, class: "button alert radius small mini"
   

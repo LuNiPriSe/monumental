@@ -21,6 +21,6 @@
     .small-3.columns
       = m.pictures.count
     .small-1.columns
-      = m.public
+      = link_to m.public.to_s, change_public_state_path(m), method: :post, class: "button mini radius"
     .small-1.columns
       = link_to "edit", edit_step_monument_path(m, 1), class: "button mini radius"
