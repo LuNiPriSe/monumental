@@ -49,7 +49,16 @@ class PicturesController < ApplicationController
   
   def destroy
     @picture.destroy
-    redirect_to monument_path(@picture.monument_id)
+    if @picture.monument.step == 3 # not in edit
+      redirect_to monument_path(@picture.monument_id)
+    else
+      if @picture.monument.pictures.count == 0  # should have at least one picture
+        redirect_to edit_step_monument_path(@picture.monument_id, step: 2)
+      else
+        redirect_to edit_step_monument_path(@picture.monument_id, step: 3)
+      end
+    end
+      
   end
   
   private
