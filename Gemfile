@@ -10,8 +10,8 @@ gem 'simple_form'
 gem "paperclip"
 
 # Use sqlite3 as the database for Active Record
-# gem 'sqlite3'
-gem 'pg'
+gem 'sqlite3', group: [:development, :test]
+gem 'pg', group: :production
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
